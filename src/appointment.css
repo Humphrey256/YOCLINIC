@@ -1,15 +1,59 @@
 body {
-    background-image: url('./yoclinic/i.JPG');
+    
     background-size: cover;
     background-position: center;
     margin: 0;
     font-family: Arial, sans-serif;
-
 }
+
+
 .nav-item {
     transition: transform 0.2s, background-color 0.2s;
 }
+
 .nav-item:hover {
     transform: scale(1.1);
     background-color: rgba(255, 255, 255, 0.2);
+}
+/* Make the name and contact information fields have the same width as the textarea */
+input[type="text"] {
+    width: 100%; /* Make the input fields occupy full width */
+    padding: 10px; /* Add some padding to the input fields */
+    margin-bottom: 20px; /* Add some margin to the bottom of the input fields */
+    border: 1px solid #ccc; /* Add a border to the input fields */
+    border-radius: 5px; /* Make the input fields rounded */
+  }
+
+/* Add responsive styles for the form */
+@media (max-width: 640px) {
+    .max-w-md {
+        max-width: 100%; /* Full width on small screens */
+        padding: 0 1rem; /* Add some padding */
+    }
+
+    /* Adjust input fields to full width */
+    input, textarea, select {
+        width: 100%; /* Full width for input elements */
+    }
+
+    .flex {
+        flex-direction: column; /* Stack elements vertically */
+    }
+}
+
+@media (min-width: 641px) {
+    .max-w-md {
+        max-width: 600px; /* Limit width on larger screens */
+    }
+}
+/* Placeholder text styling for input fields */
+input::placeholder {
+    color: solid blue; /* Solid grey color for placeholder */
+    opacity: 1; /* Ensures full color opacity */
+}
+
+/* You can also target textareas */
+textarea::placeholder {
+    color: solid blue; /* Solid grey color for placeholder */
+    opacity: 1;
 }
