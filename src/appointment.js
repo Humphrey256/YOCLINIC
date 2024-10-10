@@ -1,15 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from './header';
-import Header from './footer';
-//import ReactDOM from 'react-dom';
-import './index.css'; // Tailwind CSS styles
+import './appointment.css'; // Tailwind CSS styles
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome styles
 
-
-
 function Appointment() {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [accountsOpen, setAccountsOpen] = React.useState(false);
+  const navigate = useNavigate();
+
+  const handleBook = () => {
+    navigate('/services');
+  }
 
   return (
     <div>
@@ -17,6 +17,8 @@ function Appointment() {
       <div className="max-w-md mx-auto p-4">
         <main className="mt-4">
           <div className="mb-4">
+            <br></br><br></br><br></br><br></br>
+           
             <label className="block font-bold mb-1">Patient Information:</label>
             <input type="text" placeholder="Name" className="w-full p-2 border border-gray-300 mb-2" />
             <input type="text" placeholder="Contact details" className="w-full p-2 border border-gray-300" />
@@ -54,5 +56,4 @@ function Appointment() {
     </div>
   );
 }
-
 export default Appointment;

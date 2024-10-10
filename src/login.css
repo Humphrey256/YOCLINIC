@@ -47,7 +47,7 @@ header {
 }
 
 /* Mobile view adjustments */
-@media (max-width: 768px) {
+@media (max-width: 320px) {
     .nav-links {
         display: none;
     }
@@ -73,16 +73,5 @@ header {
         text-align: right;
         border-bottom: 1px solid #3B82F6;
     }
-}
-
-/* Placeholder text styling for input fields */
-input::placeholder {
-    color: grey; /* Solid grey color for placeholder */
-    opacity: 1; /* Ensures full color opacity */
-}
-
-/* You can also target textareas */
-textarea::placeholder {
-    color: grey; /* Solid grey color for placeholder */
-    opacity: 1;
+    
 }
