@@ -3,8 +3,35 @@ body {
     font-family: Arial, sans-serif;
     background-image: url('./Yoclinic/image3.jpg'); /* Background image */
     background-size: cover;
-    background-position: center;
+    background-position: top center; /* Position the background at the top center */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+ }
+
+
+/* Logo and YOCLINIC Styles */
+header .flex {
+  display: flex; /* Make the logo and YOCLINIC a flex container */
+  align-items: center; /* Align the logo and YOCLINIC vertically */
+  flex-shrink: 0; /* Do not shrink the logo and YOCLINIC */
+}
+
+/* Slider Button Styles */
+.slider-button {
+    width: 50px; /* 10px diameter for a circle with 5px radius */
+    height: 50px; /* 10px diameter */
+    border: 5px solid white; /* 5px border */
+    border-radius: 50%; /* Make the button circular */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Navigation Links */
@@ -22,6 +49,7 @@ body {
     padding: 10px;
     border: 2px solid white;
     display: inline-block;
+    font-size: 18px;
 }
 
 /* Pop Button */
@@ -82,108 +110,60 @@ body {
     display: none;
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-
-    .mobile-menu {
-        display: block;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        background-color: #5076f3;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-    }
-
-    .mobile-menu a {
-        display: block;
-        padding: 10px;
-        color: white;
-        text-align: right;
-        border-bottom: 1px solid #3B82F6;
-    }
-
-    .relative {
-        flex-direction: column;
-    }
-
-    .relative img {
-        width: 100%;
-        height: auto;
-    }
-
-    .absolute {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        flex-direction: column;
-    }
-
-    .highlight-box {
-        margin-bottom: 20px;
-    }
-
-    .service-cards {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .service-card {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
-
+/* Small screens (max-width: 480px) */
 @media (max-width: 480px) {
-    .service-cards {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .service-card {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
-/* Footer */
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    
+    header .flex {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-}
+    padding: 0;
+  }
+  
+  header img {
+    width: 40px; /* Set the width of the logo */
+    height: 40px; /* Set the height of the logo */
+    margin-right: 10px; /* Add some margin to the right of the logo */
+  }
+  
+  header .text-2xl {
+    font-size: 24px; /* Set the font size of YOCLINIC */
+    font-weight: bold; /* Make the font bold */
+  }
+  
+ 
 
-footer nav {
+}
+/*tablet  screens*/
+@media (max-width: 780px) {
+    
+    header .flex {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+  }
+  
+  header img {
+    width: 40px; /* Set the width of the logo */
+    height: 40px; /* Set the height of the logo */
+    margin-right: 10px; /* Add some margin to the right of the logo */
+  }
+  
+  header .text-2xl {
+    font-size: 40px; /* Set the font size of YOCLINIC */
+    font-weight: bold; /* Make the font bold */
+  }
+  .bg-gray-200.bg-opacity-90 {
+    width: 50%; /* Make the login form occupy 90% of the width on small screens */
+  }
 
-footer nav a {
-    margin: 0 10px;
-}
-
-footer .space-x-4 {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-footer .space-x-4 a {
-    margin: 0 10px;
+  input[type="email"], input[type="password"] {
+    width: 50%; /* Make the input fields occupy full width on small screens */
+    padding: 5px; /* Reduce the padding on small screens */
+    margin-bottom: 10px; /* Reduce the margin on small screens */
+    border: 1px solid #ccc; /* Reduce the border width on small screens */
+  }
 }

@@ -1,14 +1,17 @@
+/* General Styles */
 body {
     background-image: url('/public/Yoclinic/image5.jpg');
     background-size: cover;
     background-position: center;
     margin: 0;
+    font-family: Arial, sans-serif;
 }
-/* Ensure header stretches full width and is fixed at the top */
+
+/* Header: Full width, fixed at the top */
 header {
     width: 100vw; /* Full viewport width */
     background-color: #5076f3; /* Or any desired background color */
-    padding: 10px 0;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,28 +22,94 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
 }
 
-/* Add top margin to content below the header to avoid overlap */
-.main-content {
-    margin-top: 60px; /* Adjust this based on the height of your header */
+/* Logo Styling */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
 }
+
+/* Navigation item hover effect */
 .nav-item {
     transition: transform 0.2s, color 0.2s;
     color: white;
+    margin-right: 20px;
 }
+
 .nav-item:hover {
     transform: scale(1.1);
     color: #ffeb3b;
 }
+
+/* Menu icon for mobile */
 .menu-icon {
-    display: none;
+    display: none; /* Hidden by default */
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 20px;
 }
+
+/* Main content padding to avoid overlapping header */
+.main-content {
+    margin-top: 70px; /* Adjust this based on the height of your header */
+    padding: 20px; /* General padding */
+}
+
+/* Input Fields & Button: Responsive Design */
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Full width by default */
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #5076f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+button:hover {
+    background-color: #3b6bd4;
+}
+
+/* Media query for tablets and small devices */
+@media (max-width: 1024px) {
+    header {
+        padding: 0; /* Slightly reduce header padding for smaller screens */
+    }
+
+    .nav-item {
+        font-size: 14px; /* Adjust font size for navigation items */
+    }
+
+    .main-content {
+        margin-top: 60px; /* Reduce top margin on smaller screens */
+    }
+}
+
+/* Media query for mobile devices (tablets and below) */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        display: none; /* Hide normal navigation links */
     }
+
     .menu-icon {
-        display: block;
+        display: block; /* Show menu icon on smaller screens */
     }
+
+    /* Mobile menu styles */
     .mobile-menu {
         display: block;
         position: absolute;
@@ -50,14 +119,65 @@ header {
         background-color: #5076f3;
         z-index: 10;
         display: flex;
-        flex-direction: column;
-        align-items: left;
+        flex-direction: column; /* Stack menu items vertically */
+        align-items: flex-start; /* Align items to the left */
     }
+
     .mobile-menu a {
         display: block;
         padding: 10px;
         color: white;
-        text-align: right;
-        border-bottom: 1px solid #3B82F6;
+        text-align: left; /* Align text to the left */
+        border-bottom: 1px solid #3B82F6; /* Add border between menu items */
     }
+
+    .nav-item {
+        font-size: 16px; /* Make font size larger for mobile for better readability */
+    }
+
+    .logo {
+        margin-left: 10px; /* Adjust logo margin on smaller screens */
+    }
+
+    button, input {
+        width: 90%; /* Adjust input fields and button width for mobile */
+        max-width: none; /* Remove max-width for better responsiveness */
+    }
+}
+
+/* Media query for very small screens (phones) */
+@media (max-width: 480px) {
+    header {
+        padding: 6px 0; /* Further reduce header padding */
+        flex-direction: row; /* Stack items in header horizontally */
+        justify-content: space-between;
+    }
+
+    .main-content {
+        margin-top: 50px; /* Reduce top margin */
+        padding: 10px; /* Adjust content padding */
+    }
+
+    .mobile-menu a {
+        font-size: 14px; /* Adjust font size for mobile menu links */
+    }
+    
+    .menu-icon {
+        margin-right: 10px;
+    }
+
+    input, button {
+        width: 100%; /* Full width for small screens */
+    }
+}
+/* Placeholder text styling for input fields */
+input::placeholder {
+    color: solid blue; /* Solid grey color for placeholder */
+    opacity: 1; /* Ensures full color opacity */
+}
+
+/* You can also target textareas */
+textarea::placeholder {
+    color: solid blue; /* Solid grey color for placeholder */
+    opacity: 1;
 }
