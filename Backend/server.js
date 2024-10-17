@@ -1,14 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const appointmentRoutes = require('./routes/appointmentRoutes');
+const UserRoutes = require('./Routes/userRoutes');
+const appointmentRoutes = require('./Routes/appointmentRoutes');
+const doctorRoutes = require('./Routes/DoctorRoutes');
 
 dotenv.config();
 const app = express();
-app.use(express.json()); // Middleware for parsing JSON requests
+// Middleware for parsing JSON requests
+app.use(express.json());
 
 // Use the routes
-app.use('/api', appointmentRoutes);
+app.use('/api', UserRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/doctors', doctorRoutes);
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

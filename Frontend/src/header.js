@@ -10,7 +10,7 @@ function Header() {
   return (
     <header className="bg-blue-900 text-white p-4 flex justify-between items-center">
       <div className="flex items-center space-x-2">
-        <img src="./yoclinic/logo.WEBP" alt="YOCLINIC Logo" className="w-10 h-10" />
+        <img src="./yoclinic/logo.WEBP" alt="YOCLINIC Logo" className="w-10 h-10"  class="logo"/>
         <div className="text-2xl font-bold">YOCLINIC</div>
       </div>
       <div className="menu-icon md:hidden" onClick={() => setMenuOpen(!menuOpen)}>

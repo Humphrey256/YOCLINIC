@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -13,7 +12,7 @@ const handleRegister = async (e) => {
     };
 
     try {
-        const response = await axios.post('http://your-backend-url/api/register', userData);
+        const response = await axios.post('http://localhost:5000/api/register', userData);
         console.log(response.data.message);
     } catch (error) {
         console.error('Error registering user:', error.response.data.message);
