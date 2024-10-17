@@ -1,13 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate for routing
 import Header from './header';
-import Header from './footer';
-//import ReactDOM from 'react-dom';
+import Footer from './footer';  // Correct import for Footer
 import './services.css'; // Tailwind CSS styles
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome styles
 
 function Services() {
+  const navigate = useNavigate();  // Use React Router's navigation
+
   const handleAppointmentClick = () => {
-    window.location.href = "appointment.html";
+    navigate('/appointment');  // Update this to the correct route for appointments
   };
 
   const [showText, setShowText] = React.useState(true);
@@ -23,7 +25,7 @@ function Services() {
     <div className="min-h-screen bg-gray-100">
       <Header />
       <div className="relative">
-        <img src="./yoclinic/image3.jpg" alt="Doctor in a clinic" className="w-full h-96 object-cover" />
+        <img src="./yoclinic/image12.jpg" alt="Doctor in a clinic" className="w-full h-94 object-cover" />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
           {showText && (
             <div className="highlight-box text-center text-lg mb-4">
@@ -39,9 +41,9 @@ function Services() {
         <h2 className="text-2xl font-bold text-center mb-4">Our Services</h2>
         <div className="flex flex-nowrap justify-center">
           <div className="bg-black rounded-lg shadow-md p-4 m-5 w-1/5 hover:scale-110 transition duration-300">
-            <h3 className="text-lg font-bold mb-2 text-white">Primary Care </h3>
-            <ul >
-              <li className="text-white"> Routine check-ups and physical exams</li>
+            <h3 className="text-lg font-bold mb-2 text-white">Primary Care</h3>
+            <ul>
+              <li className="text-white">Routine check-ups and physical exams</li>
               <li className="text-white">Diagnosis and treatment of common illnesses and conditions</li>
               <li className="text-white">Preventive care and health screenings</li>
             </ul>
