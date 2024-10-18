@@ -1,105 +1,167 @@
-/* Update the body background image to image8.jpg */
+/* Update the body background image to image3.jpg */
 body {
-    background-image: url('./Yoclinic/image8.jpg');
+    background-image: url('//public/image3.jpg');
     /* Use the correct path from public folder */
     background-size: cover;
     background-position: center;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    /* Helps with full-width consistency */
+    box-sizing: border-box; /* Helps with full-width consistency */
+}
+
+/* Form container styling */
+/* Form container styling */
+.form-container {
+    width: 80%;                       /* Responsive width */
+    max-width: 600px;                /* Max width to prevent excessive stretching */
+    margin: 0 auto;                  /* Center the form */
+    padding: 20px;                   /* Inner padding */
+    background-color: rgba(128, 128, 128, 0.75); /* Slightly transparent gray background */
+    border-radius: 30px;             /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    box-sizing: border-box;           /* Ensures padding is included in the width */
+    display: flex;                   /* Use Flexbox for layout */
+    flex-direction: column;         /* Arrange items in a column */
+    align-items: stretch;           /* Stretch children to fill the width */
+    
+}
+
+/* Input and button styling */
+input, button {
+    width: 100%;                   /* Ensure full width of the parent container */
+    padding: 12px;                 /* Consistent padding */
+    margin-bottom: 10px;           /* Space between fields */
+    border: 1px solid #ccc;        /* Subtle border */
+    border-radius: 5px;            /* Rounded corners */
+    box-sizing: border-box;         /* Include padding and border in width */
+}
+
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;                 /* Adjust form container width */
+        padding: 15px;              /* Adjust padding */
+    }
+    
+    input, button {
+        padding: 10px;              /* Adjust padding for smaller screens */
+        font-size: 14px;            /* Adjust font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        width: 95%;                 /* Further adjust for very small screens */
+        padding: 10px;              /* Further adjust padding */
+    }
+    
+    input, button {
+        width: 95%;
+        padding: 8px;               /* Adjust padding */
+        font-size: 12px;            /* Adjust font size */
+    }
 }
 
 /* Ensure header stretches full width and is fixed at the top */
 header {
-    width: 100vw;
-    /* Full viewport width */
-    background-color: #5076f3;
-    /* Or any desired background color */
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    /* Keeps header at the top */
-    top: 0;
-    /* Ensure it's at the topmost end */
-    left: 0;
-    /* Ensure it starts at the left side of the screen */
-    z-index: 100;
-    /* Ensure it stays on top of other content */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Optional: adds shadow for depth */
+    width: 100vw; /* Full viewport width */
+    background-color: #5076f3; /* Header background color */
+    padding: 10px 0; /* Padding for header */
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+    position: fixed; /* Keeps header at the top */
+    top: 0; /* Ensure it's at the topmost end */
+    left: 0; /* Ensure it starts at the left side of the screen */
+    z-index: 100; /* Ensure it stays on top of other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
 
 /* Add top margin to content below the header to avoid overlap */
 .main-content {
-    margin-top: 60px;
-    /* Adjust this based on the height of your header */
+    margin-top: 60px; /* Adjust this based on the height of your header */
 }
 
 /* Style for navigation links */
 .nav-item {
-    transition: transform 0.2s, color 0.2s;
-    color: white;
-    margin: 0 15px;
-    /* Optional spacing between nav items */
+    transition: transform 0.2s, color 0.2s; /* Smooth transition on hover */
+    color: white; /* Text color for nav items */
+    margin: 0 15px; /* Optional spacing between nav items */
 }
 
 /* On hover, scale and change color */
 .nav-item:hover {
-    transform: scale(1.1);
-    color: #ffeb3b;
+    transform: scale(1.1); /* Scale effect on hover */
+    color: #ffeb3b; /* Change color on hover */
 }
 
 /* Hide menu icon for larger screens */
 .menu-icon {
-    display: none;
+    display: none; /* Hidden by default */
 }
 
-/* Mobile view adjustments */
+/* Mobile view adjustments for navigation */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        display: none; /* Hide regular nav links */
     }
 
     .menu-icon {
-        display: block;
+        display: block; /* Show the menu icon */
     }
 
     .mobile-menu {
-        display: block;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        background-color: #5076f3;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        align-items: left;
+        display: block; /* Show the mobile menu */
+        position: absolute; /* Absolute positioning */
+        top: 60px; /* Position below the header */
+        right: 0; /* Align to the right */
+        width: 100%; /* Full width */
+        background-color: #5076f3; /* Match header color */
+        z-index: 10; /* Layering */
+        display: flex; /* Flexbox layout */
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the left */
     }
 
     .mobile-menu a {
-        display: block;
-        padding: 10px;
-        color: white;
-        text-align: right;
-        border-bottom: 1px solid #3B82F6;
+        display: block; /* Display block for each link */
+        padding: 10px; /* Inner padding */
+        color: white; /* Link color */
+        text-align: left; /* Align text to the left */
+        border-bottom: 1px solid #3B82F6; /* Divider */
+    }
+}
+
+/* Adjustments for tablets and small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-links {
+        display: flex; /* Show navigation links in a row */
+    }
+
+    .menu-icon {
+        display: none; /* Hide the menu icon */
+    }
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 1025px) {
+    header {
+        padding: 15px 0; /* Slightly more padding for larger screens */
+    }
+
+    .nav-item {
+        margin: 0 20px; /* More spacing for larger screens */
     }
 }
 
 /* Placeholder text styling for input fields */
 input::placeholder {
-    color: grey;
-    /* Solid grey color for placeholder */
-    opacity: 1;
-    /* Ensures full color opacity */
+    color: grey; /* Solid grey color for placeholder */
+    opacity: 1; /* Ensures full color opacity */
 }
 
 /* You can also target textareas */
 textarea::placeholder {
-    color: grey;
-    /* Solid grey color for placeholder */
-    opacity: 1;
+    color: grey; /* Solid grey color for placeholder */
+    opacity: 1; /* Ensures full color opacity */
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from './header';
-import Header from './footer';
+//import Footer from './footer';
 //import ReactDOM from 'react-dom';
-import './index.css'; // Tailwind CSS styles
+import './appointment.css'; // Tailwind CSS styles
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome styles
 
 
