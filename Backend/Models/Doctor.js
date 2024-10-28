@@ -1,9 +1,17 @@
+// models/Doctor.js
 const mongoose = require('mongoose');
 
-const DoctorSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    specialty: { type: String, required: true },
-    availability: [{ day: String, time: String }]  // Example: [{ day: 'Monday', time: '9:00 AM' }]
+const slotSchema = new mongoose.Schema({
+  date: { type: String, required: true },
+  time: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Doctor', DoctorSchema);
+const doctorSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  specialization: { type: String, required: true },
+  availableSlots: [slotSchema]
+});
+
+module.exports = mongoose.model('Doctor', doctorSchema);
