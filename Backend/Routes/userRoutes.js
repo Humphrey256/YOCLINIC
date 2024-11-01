@@ -1,15 +1,15 @@
 const express = require('express');
 const userController = require('../controllers/userController');
+const { checkAuth, checkRole } = require('../middleware/authMiddleware'); // Correctly import your middleware
 const router = express.Router();
 
-// Define your routes here
-router.post('/register', userController.registerUser);
-router.post('/login', userController.loginUser);
-router.get('/', userController.getAllUsers);
-router.get('/:id', userController.getUserById);
-router.put('/:id', userController.updateUser);
-router.delete('/:id', userController.deleteUser);
+// Check if userController is loaded correctly
+console.log('userController:', userController);
 
-console.log('User routes loaded');
+// Get all users (Admin only)
+router.get('/', checkAuth, checkRole('admin'), userController.getAllUsers);
+
+// Delete a user (Admin only)
+router.delete('/:id', checkAuth, checkRole('admin'), userController.deleteUser);
 
 module.exports = router;
