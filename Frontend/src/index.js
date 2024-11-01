@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';  // Updated imports
-import Header from './header';  // Correct path to Header.js
-import Footer from './footer';  // Correct path to Footer.js
+import Header from '/layout/header';  // Correct path to Header.js
+import Footer from '/layout/footer';  // Correct path to Footer.js
 //import './index.css';
-import Registration from './registration';  // Import your registration.js component
-import Login from './login';  // Import your login.js component
-import Services from './services'; // Import the Services component
-import Appointment from './appointment'; // Import the Home component
+import Registration from '/pages/registration';  // Import your registration.js component
+import Login from '/pages/login';  // Import your login.js component
+import Services from '/pages/services'; // Import the Services component
+import PatientDashboard from '/dashboards/patientDashboard';
+import DoctorsDashboard from '/dashboards/doctorDashboard';
+
 
 function App() {
   const [statement, setStatement] = React.useState(0);
@@ -16,7 +18,7 @@ function App() {
   const navigate = useNavigate();
 
   const handleGetStartedClick = () => {
-    navigate('/registration');  // Navigate to the registration page
+    navigate('../pages/registration');  // Navigate to the registration page
   };
 
   const statements = [
@@ -54,10 +56,11 @@ ReactDOM.render(
   <Router>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/registration" element={<Registration />} />  {/* Route to the registration page */}
-      <Route path="/login" element={<Login />} />  {/* Route to the login page */}
-      <Route path="/services" element={<Services />} />  {/* Route to the services page */}
-      <Route path="/appointment" element={<Appointment />} />  {/* Route to the appointments page */}
+      <Route path="/pages/registration" element={<Registration />} />  {/* Route to the registration page */}
+      <Route path="/pages/login" element={<Login />} />  {/* Route to the login page */}
+      <Route path="/dashboards/patientDashboard" element={<PatientDashboard />} />  
+      <Route path="/dashboards/doctorDashboard" element={<DoctorsDashboard />} />
+      <Route path="/pages/services" element={<Services />} />
     </Routes>
   </Router>,
   document.getElementById('root')
