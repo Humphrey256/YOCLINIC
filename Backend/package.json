@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.mjs"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +22,9 @@
     "mongoose": "^8.8.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.16"
+  },
+  "engines": {
+    "node": ">=14.x <=22.x",
+    "npm": ">=6.x"
   }
 }
