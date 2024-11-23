@@ -15,6 +15,12 @@ import doctorRoute from "./Routes/doctorRoute.js";
 import reviewRoute from "./Routes/reviewRoute.js";
 import bookingRoutes from './Routes/bookingRoute.js'; // Adjust the path as necessary
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 // Config
 dotenv.config();
 const app = express();
