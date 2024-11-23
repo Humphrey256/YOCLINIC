@@ -86,7 +86,7 @@ app.use("/api/v1/reviews", reviewRoute);
 app.use('/api/v1/bookings', bookingRoutes);
 
 // Static file serving for React app
-const buildPath = path.join(process.cwd(), 'Frontend/build');
+const buildPath = path.join(process.cwd(), 'Frontend', 'build');
 app.use(express.static(buildPath));
 
 // Serve React's index.html for undefined routes
