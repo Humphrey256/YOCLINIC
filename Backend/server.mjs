@@ -91,7 +91,7 @@ app.use(express.static(buildPath));
 
 // Serve React's index.html for undefined routes
 app.get("*", (req, res) => {
-    res.sendFile(path.join(buildPath, "index.html"));
+    res.sendFile(path.join(__dirname, 'Frontend/build', 'index.html'));
 });
 
 // Database connection
