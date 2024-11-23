@@ -9,9 +9,9 @@ export default defineConfig({
         sourcemap: true, // optional: enable source maps for debugging production code
     },
     server: {
-        port: 10000, // default port for local development, can be changed
+        port: 5000, // default port for local development, can be changed
     },
     preview: {
-        port: 10000, // Port for previewing the build
+        port: 5000, // Port for previewing the build
     },
 });
