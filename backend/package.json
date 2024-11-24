@@ -4,8 +4,8 @@
   "main": "server.mjs",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm --prefix Frontend run build && node server.mjs"
+    "build": "babel src -d dist",
+    "start": "node dist/server.mjs"
   },
   "keywords": [],
   "author": "",
