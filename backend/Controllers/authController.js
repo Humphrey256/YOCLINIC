@@ -3,52 +3,54 @@ import bcrypt from "bcryptjs";
 import User from "../models/UserSchema.js";
 import Doctor from "../models/DoctorSchema.js";
 
-const generateToken = (user) => {
-    const token = jwt.sign(
-        { id: user._id, role: user.role },
-        process.env.JWT_SECRET_KEY,
-        { expiresIn: "15d" }
-    );
-    console.log("Generated Token:", token);
-    return token;
+// Fixed admin credentials (hashed password)
+const fixedAdminCredentials = {
+    email: "admin@yoclinic.com",
+    password: await bcrypt.hash("admin@123", 10), // Pre-hashed password
 };
 
+// Generate JWT Token
+const generateToken = (user) => {
+    return jwt.sign(
+        { id: user._id || "admin", role: user.role || "admin" },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "1h" } // Token expires in 1 hour
+    );
+};
 
-// register controller
+// Register Controller
 export const register = async (req, res) => {
-    console.log("Register function called");
-    console.log("Request body in register:", req.body); // Log the request body
-
-    const { email, password, name, role = 'patient', photo, gender } = req.body;
+    const { email, password, name, role = "patient", gender, qualifications, experiences, timeSlots } = req.body;
 
     try {
-        let user = null;
-
-        // Check the user role
-        if (role === "patient") {
-            user = await User.findOne({ email });
-            console.log("User found in User collection:", user);
-        } else if (role === "doctor") {
-            user = await Doctor.findOne({ email });
-            console.log("User found in Doctor collection:", user);
+        if (!email || !password || !name) {
+            return res.status(400).json({ message: "Email, password, and name are required" });
         }
 
-        // Check if user exists
-        if (user) {
+        // Check if user already exists
+        const userExists =
+            (role === "patient" && await User.findOne({ email })) ||
+            (role === "doctor" && await Doctor.findOne({ email }));
+
+        if (userExists) {
             return res.status(400).json({ message: "User already exists" });
         }
 
+        // Handle photo upload
+        const photoPath = req.file ? req.file.path.replace(/\\/g, '/') : null; // Normalize path for cross-platform compatibility
+
         // Hash password
         const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create new user based on role
+        // Create new user instance
+        let user;
         if (role === "patient") {
             user = new User({
                 name,
                 email,
-                password: hashPassword,
-                photo,
+                password: hashedPassword,
+                photo: photoPath,
                 gender,
                 role,
             });
@@ -56,78 +58,93 @@ export const register = async (req, res) => {
             user = new Doctor({
                 name,
                 email,
-                password: hashPassword,
-                photo,
+                password: hashedPassword,
+                photo: photoPath,
                 gender,
                 role,
-                qualifications: req.body.qualifications || [],
-                experiences: req.body.experiences || [],
-                timeSlots: req.body.timeSlots || [],
-                averageRating: req.body.averageRating || 0,
-                totalRating: req.body.totalRating || 0,
-                isApproved: req.body.isApproved || "pending",
-                reviews: req.body.reviews || []
+                qualifications: qualifications || [],
+                experiences: experiences || [],
+                timeSlots: timeSlots || [],
+                averageRating: 0,
+                totalRating: 0,
+                isApproved: "pending",
+                reviews: [],
             });
         }
 
-        console.log("User instance before saving:", user); // Log user instance before saving
-
-        // Save user
+        // Save user in the database
         await user.save();
-        console.log("User registration successful");
-        res.status(200).json({ success: true, message: "User successfully created" });
+
+        res.status(201).json({ success: true, message: `${role.charAt(0).toUpperCase() + role.slice(1)} registered successfully` });
     } catch (error) {
-        console.error("Registration Error:", error); // Log the error for debugging
-        res.status(500).json({ success: false, message: "You Got Error, Try Again" });
+        console.error("Registration Error:", error);
+        res.status(500).json({ success: false, message: "Registration failed, please try again." });
     }
 };
 
+// Login Controller
 export const login = async (req, res) => {
-    console.log("Incoming request:", req); // Log the entire request object
-    console.log("Request body in login:", req.body); // Log the request body
-    const { email, password: inputPassword } = req.body;  // rename req.body.password to inputPassword
+    const { email, password: inputPassword } = req.body;
 
     try {
-        let user = null;
-        const patient = await User.findOne({ email });
-        const doctor = await Doctor.findOne({ email });
-
-        if (patient) {
-            user = patient;
-        } else if (doctor) {
-            user = doctor;
+        if (!email || !inputPassword) {
+            return res.status(400).json({ message: "Email and password are required" });
         }
 
-        // Check if user exists
+        // Check if login is for admin
+        if (email === fixedAdminCredentials.email) {
+            const isAdminPasswordMatch = await bcrypt.compare(
+                inputPassword,
+                fixedAdminCredentials.password
+            );
+
+            if (!isAdminPasswordMatch) {
+                return res.status(400).json({ message: "Invalid admin credentials" });
+            }
+
+            const token = jwt.sign(
+                { id: "admin", role: "admin" },
+                process.env.JWT_SECRET_KEY,
+                { expiresIn: "1h" }
+            );
+
+            return res.status(200).json({
+                success: true,
+                message: "Admin login successful",
+                token,
+                role: "admin",
+            });
+        }
+
+        // Check for user in both User and Doctor models
+        const user = await User.findOne({ email }) || await Doctor.findOne({ email });
+
         if (!user) {
-            return res.status(404).json({ message: 'User Not Found' });
+            return res.status(404).json({ message: "User not found" });
         }
 
-        // Compare password
-        const isPasswordMatch = await bcrypt.compare(inputPassword, user.password);  // use inputPassword
-        // Log user object to check before generating the token
-        console.log("User object for token generation:", user);
-        console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
-
+        // Validate password
+        const isPasswordMatch = await bcrypt.compare(inputPassword, user.password);
         if (!isPasswordMatch) {
-            return res.status(400).json({ status: false, message: 'Invalid Credentials' });
+            return res.status(400).json({ message: "Invalid credentials" });
         }
 
-        // Get token
+        // Generate token
         const token = generateToken(user);
-        const { password, role, appointments, ...rest } = user._doc;
 
-        // Send response with token and user data
-        console.log("Login successful, sending response...");
+        // Destructure sensitive info
+        const { password, ...userWithoutPassword } = user._doc;
+
         res.status(200).json({
-            status: true,
-            message: 'Successfully Login',
+            success: true,
+            message: "Login successful",
             token,
-            data: { ...rest },
-            role
+            userId: user._id,
+            role: user.role,
+            data: userWithoutPassword,
         });
     } catch (error) {
-        console.error("Login Error:", error);  // Log the error for debugging
-        res.status(500).json({ status: false, message: 'Failed To Login' });
+        console.error("Login Error:", error);
+        res.status(500).json({ success: false, message: "Login failed, please try again." });
     }
 };

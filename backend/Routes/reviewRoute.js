@@ -3,7 +3,7 @@ import {
     getAllReviews,
     createReview,
 } from "../controllers/reviewController.js";
-import { authenticate, restrict } from "../auth/verifyToken.js";
+import { authenticate, restrict } from "../auth/verifytoken.js";
 
 const router = express.Router({ mergeParams: true });
 
