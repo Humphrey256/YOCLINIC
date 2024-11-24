@@ -3,21 +3,37 @@ import {
     createBooking,
     getUserBookings,
     getDoctorBookings,
-    updateBookingStatus
+    updateBookingStatus,
+    confirmbooking,
+    reschedulebooking,
+    clearbookingHistory,
+    getAllBookings, // Add this import for getting all bookings
 } from "../controllers/bookingController.js";
 
 const router = express.Router();
 
 // Book an appointment
-router.post("/book", createBooking);
+router.post("/", createBooking);  // Ensure this route is correctly defined
 
-// Get user bookings
+// Get all bookings for a specific user
 router.get("/user/:userId", getUserBookings);
 
-// Get doctor bookings
-router.get("/doctor/:doctorId", getDoctorBookings);
+// Get all bookings for a specific doctor
+router.get("/:doctorId", getDoctorBookings);  // Updated route for clarity
 
-// Update booking status
-router.patch("/:bookingId/status", updateBookingStatus);
+// Get all bookings
+router.get("/", getAllBookings);  // New route to get all bookings
+
+// Update booking status (for confirming appointment)
+router.patch("/update/:bookingId", updateBookingStatus);  // Keep the route to update status
+
+// Confirm appointment
+router.patch("/confirm/:bookingId", confirmbooking);  // This route remains the same
+
+// Reschedule appointment
+router.patch("/reschedule/:bookingId", reschedulebooking);  // This route remains the same
+
+// Clear appointment history for a specific doctor
+router.delete("/clearhistory/:doctorId", clearbookingHistory);
 
 export default router;
