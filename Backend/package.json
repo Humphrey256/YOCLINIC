@@ -4,7 +4,9 @@
   "main": "server.mjs",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "install": "npm install",
+    "build": "echo 'No build script defined'"
   },
   "keywords": [],
   "author": "",
