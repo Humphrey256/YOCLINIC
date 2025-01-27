@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "indent": ["error", 2], // Enforce 2 spaces for indentation
+    "no-unused-vars": ["warn"], // Warn about unused variables
+    "quotes": ["error", "single"], // Enforce single quotes for strings
+    "no-console": ["warn", { "allow": ["warn", "error"] }] // Warn about console.log but allow console.warn and console.error
+  }
+}
