@@ -24,7 +24,7 @@ const AdminDashboard = () => {
     const fetchDoctors = async () => {
         setLoading((prev) => ({ ...prev, doctors: true }));
         try {
-            const response = await fetch('http://localhost:5000/api/v1/doctors');
+            const response = await fetch('https://yoclinic.onrender.com/api/v1/doctors');
             if (!response.ok) throw new Error('Failed to fetch doctors');
             const data = await response.json();
             setDoctors(data.data || []); // Ensure fallback to an empty array
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
     const fetchPatients = async () => {
         setLoading((prev) => ({ ...prev, patients: true }));
         try {
-            const response = await fetch('http://localhost:5000/api/v1/users');
+            const response = await fetch('https://yoclinic.onrender.com/api/v1/users');
             if (!response.ok) throw new Error('Failed to fetch patients');
             const data = await response.json();
             setPatients(data.data || []); // Ensure fallback to an empty array
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
     const fetchAppointments = async () => {
         setLoading((prev) => ({ ...prev, appointments: true }));
         try {
-            const response = await fetch('http://localhost:5000/api/v1/bookings');
+            const response = await fetch('https://yoclinic.onrender.com/api/v1/bookings');
             if (!response.ok) throw new Error('Failed to fetch appointments');
             const data = await response.json();
             setAppointments(data.data || []); // Ensure fallback to an empty array
@@ -75,7 +75,7 @@ const AdminDashboard = () => {
         try {
             const method = action === 'reject' ? 'DELETE' : 'PATCH';
             const updatedStatus = action === 'approve' ? 'confirmed' : 'rejected';
-            const response = await fetch(`http://localhost:5000/api/v1/doctors/${action}/${doctorId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/doctors/${action}/${doctorId}`, {
                 method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ isApproved: updatedStatus }),
@@ -105,7 +105,7 @@ const AdminDashboard = () => {
         if (!window.confirm(`Are you sure you want to ${action} this appointment?`)) return;
         try {
             const updatedStatus = action === 'approve' ? 'confirmed' : 'rejected';
-            const response = await fetch(`http://localhost:5000/api/v1/bookings/${action}/${appointmentId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/bookings/${action}/${appointmentId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: updatedStatus }),
@@ -133,7 +133,7 @@ const AdminDashboard = () => {
     // Handle adding a new doctor
     const handleAddDoctor = async (newDoctor) => {
         try {
-            const response = await fetch('http://localhost:5000/api/v1/doctors', {
+            const response = await fetch('https://yoclinic.onrender.com/api/v1/doctors', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newDoctor),
@@ -159,7 +159,7 @@ const AdminDashboard = () => {
     // Handle editing a doctor
     const handleEditDoctor = async (doctorId, updatedDoctor) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/doctors/${doctorId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/doctors/${doctorId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedDoctor),
@@ -190,7 +190,7 @@ const AdminDashboard = () => {
     const handleDeleteDoctor = async (doctorId) => {
         if (!window.confirm('Are you sure you want to delete this doctor?')) return;
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/doctors/${doctorId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/doctors/${doctorId}`, {
                 method: 'DELETE',
             });
 
@@ -213,7 +213,7 @@ const AdminDashboard = () => {
     const handleDeletePatient = async (patientId) => {
         if (!window.confirm('Are you sure you want to delete this patient?')) return;
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/users/${patientId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/users/${patientId}`, {
                 method: 'DELETE',
             });
 
@@ -236,7 +236,7 @@ const AdminDashboard = () => {
     const handleDeleteAppointment = async (appointmentId) => {
         if (!window.confirm('Are you sure you want to delete this appointment?')) return;
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/bookings/${appointmentId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/bookings/${appointmentId}`, {
                 method: 'DELETE',
             });
 
@@ -367,7 +367,7 @@ const AdminDashboard = () => {
                             {filteredDoctors.map((doctor) => (
                                 <div key={doctor._id} className="border p-4 rounded-lg shadow-sm">
                                     <img
-                                        src={`http://localhost:5000/${doctor.photo?.replace(/\\/g, '/')}`}
+                                        src={`https://yoclinic.onrender.com/${doctor.photo?.replace(/\\/g, '/')}`}
                                         alt={`${doctor.name}'s profile`}
                                         className="w-24 h-24 rounded-full mb-3"
                                     />

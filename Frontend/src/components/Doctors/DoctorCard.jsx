@@ -22,7 +22,7 @@ function DoctorCard({ doctor }) {
             <div className="flex justify-center mb-4">
                 {photo ? (
                     <img
-                        src={`http://localhost:5000/${photo}`}
+                        src={`https://yoclinic.onrender.com/${photo}`}
                         alt={name}
                         className="w-24 h-24 rounded-full object-cover"
                     />

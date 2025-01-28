@@ -28,7 +28,7 @@ const PatientDashboard = () => {
 
     const fetchDoctors = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/v1/doctors', {
+            const response = await fetch('https://yoclinic.onrender.com/api/v1/doctors', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -57,7 +57,7 @@ const PatientDashboard = () => {
 
     const fetchTimeSlots = async (doctorId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/doctors/timeSlots/${doctorId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/doctors/timeSlots/${doctorId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -76,7 +76,7 @@ const PatientDashboard = () => {
 
     const fetchMedicalHistory = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/patients/history/${userId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/patients/history/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -96,7 +96,7 @@ const PatientDashboard = () => {
 
     const fetchMedicalDocuments = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/patients/documents/${userId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/patients/documents/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -117,7 +117,7 @@ const PatientDashboard = () => {
 
     const fetchNotifications = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/patients/notifications/${userId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/patients/notifications/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -138,7 +138,7 @@ const PatientDashboard = () => {
 
     const fetchAppointments = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/bookings/user/${userId}`, { // Corrected endpoint URL
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/bookings/user/${userId}`, { // Corrected endpoint URL
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -196,7 +196,7 @@ const PatientDashboard = () => {
             let response;
             if (submittedDetails) {
                 // If editing an existing appointment
-                response = await fetch(`http://localhost:5000/api/v1/bookings`, {
+                response = await fetch(`https://yoclinic.onrender.com/api/v1/bookings`, {
                     method: 'PUT',  // Use PUT for update
                     headers: {
                         'Content-Type': 'application/json',
@@ -206,7 +206,7 @@ const PatientDashboard = () => {
                 });
             } else {
                 // If creating a new appointment
-                response = await fetch('http://localhost:5000/api/v1/bookings', {
+                response = await fetch('https://yoclinic.onrender.com/api/v1/bookings', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -251,7 +251,7 @@ const PatientDashboard = () => {
 
     const handleAppointmentCancel = async (appointmentId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/bookings/cancel/${appointmentId}`, {
+            const response = await fetch(`https://yoclinic.onrender.com/api/v1/bookings/cancel/${appointmentId}`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -385,7 +385,7 @@ const PatientDashboard = () => {
                                             {/* Circular Image */}
                                             <div className="w-44 h-44 bg-blue-300 rounded-full flex items-center justify-center mb-4 overflow-hidden">
                                                 <img
-                                                    src={doctor.photo ? `http://localhost:5000/${doctor.photo}` : 'http://localhost:5000/uploads/default-image.jpg'}
+                                                    src={doctor.photo ? `https://yoclinic.onrender.com/${doctor.photo}` : 'https://yoclinic.onrender.com/uploads/default-image.jpg'}
                                                     alt={doctor.name || 'Doctor'}
                                                     className="w-40 h-40 rounded-full object-cover"
                                                 />

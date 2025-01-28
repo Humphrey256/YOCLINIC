@@ -27,7 +27,7 @@ const DoctorDashboard = () => {
             return;
         }
 
-        fetch(`http://localhost:5000/api/v1/bookings/doctor/${doctorId}`, {
+        fetch(`https://yoclinic.onrender.com/api/v1/bookings/doctor/${doctorId}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -42,7 +42,7 @@ const DoctorDashboard = () => {
 
     const fetchDoctorProfile = () => {
         const doctorId = localStorage.getItem('doctorId');
-        fetch(`http://localhost:5000/api/v1/doctors/${doctorId}`, {
+        fetch(`https://yoclinic.onrender.com/api/v1/doctors/${doctorId}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -56,7 +56,7 @@ const DoctorDashboard = () => {
 
     const handleProfileUpdate = () => {
         const doctorId = localStorage.getItem('doctorId');
-        fetch(`http://localhost:5000/api/v1/doctors/update/${doctorId}`, {
+        fetch(`https://yoclinic.onrender.com/api/v1/doctors/update/${doctorId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(doctorProfile)
@@ -79,7 +79,7 @@ const DoctorDashboard = () => {
             return;
         }
 
-        fetch(`http://localhost:5000/api/v1/bookings/confirm/${appointmentId}`, {
+        fetch(`https://yoclinic.onrender.com/api/v1/bookings/confirm/${appointmentId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ doctorId, status: 'Confirmed' })
@@ -105,7 +105,7 @@ const DoctorDashboard = () => {
             return;
         }
 
-        fetch(`http://localhost:5000/api/v1/bookings/cancel/${appointmentId}`, {
+        fetch(`https://yoclinic.onrender.com/api/v1/bookings/cancel/${appointmentId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ doctorId, status: 'canceled' })

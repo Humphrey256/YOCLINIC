@@ -12,7 +12,7 @@ const Doctors = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/v1/doctors', {
+                const response = await fetch('https://yoclinic.onrender.com/api/v1/doctors', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
