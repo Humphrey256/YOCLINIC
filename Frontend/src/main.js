@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import ReactDOM from 'react-dom/client';
 import App from './App.js';
 import './index.css';
@@ -9,7 +9,7 @@ console.log('Rendering App component'); // This should confirm rendering
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <BrowserRouter>
-            < App />
+            <App />  {/* Corrected the space here */}
         </BrowserRouter>
     </React.StrictMode>
 );
