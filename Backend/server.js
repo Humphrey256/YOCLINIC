@@ -22,7 +22,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 const corsOptions = {
-    origin: ['https://appointment-2-3iht.onrender.com', 'http://localhost:3000'], // Allow frontend access
+    origin: ['https://yoclinic-1.onrender.com', 'http://localhost:3000'], // Allow frontend access
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],  
     allowedHeaders: ['Content-Type', 'Authorization'],  
 };
