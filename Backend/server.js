@@ -20,7 +20,7 @@ import patientRoutes from "./Routes/patientRoutes.js"; // Import patient routes
 // Config
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 const corsOptions = {
     origin: ['https://yoclinic-1.onrender.com', 'http://localhost:3000'], // Allow frontend access
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],  

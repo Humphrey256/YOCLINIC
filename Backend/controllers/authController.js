@@ -20,6 +20,7 @@ const generateToken = (user) => {
 
 // Register Controller
 export const register = async (req, res) => {
+    console.log("Register controller reached");
     const { email, password, name, phone, role = "patient", gender, qualifications, experiences, timeSlots } = req.body;
 
     try {
@@ -69,7 +70,7 @@ export const register = async (req, res) => {
                 timeSlots: timeSlots || [],
                 averageRating: 0,
                 totalRating: 0,
-                isApproved: "pending",
+                isApproved: "Pending",
                 reviews: [],
             });
         }
